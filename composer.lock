@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "88d5e9ef984cdffc58a4f0e209c486bd",
-    "content-hash": "d6405add6fc8c429dc58ff5d9200ee80",
+    "hash": "6533864e20b7af0ee96f26631491257e",
+    "content-hash": "3427528edbed03e09e10143d23f59a88",
     "packages": [
         {
             "name": "studyportals/cache",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studyportals/Cache.git",
-                "reference": "8227b3c0c1831441379b7cb969a1b4ad7b78c005"
+                "reference": "f24264b18bea49e97fa8a630cdda595d5b026600"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studyportals/Cache/zipball/8227b3c0c1831441379b7cb969a1b4ad7b78c005",
-                "reference": "8227b3c0c1831441379b7cb969a1b4ad7b78c005",
+                "url": "https://api.github.com/repos/studyportals/Cache/zipball/f24264b18bea49e97fa8a630cdda595d5b026600",
+                "reference": "f24264b18bea49e97fa8a630cdda595d5b026600",
                 "shasum": ""
             },
             "require": {
-                "studyportals/exception": "^1.0"
+                "studyportals/exception": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -41,20 +41,20 @@
                 }
             ],
             "description": "Cache engines for studyportals",
-            "time": "2017-11-02 13:32:25"
+            "time": "2017-11-27 10:50:39"
         },
         {
             "name": "studyportals/exception",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studyportals/Exception.git",
-                "reference": "e6529dc4743ec4c249773be285e0ea386bcdb867"
+                "reference": "77d9c717df185a5ea3438e861a0c0524b07f88f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studyportals/Exception/zipball/e6529dc4743ec4c249773be285e0ea386bcdb867",
-                "reference": "e6529dc4743ec4c249773be285e0ea386bcdb867",
+                "url": "https://api.github.com/repos/studyportals/Exception/zipball/77d9c717df185a5ea3438e861a0c0524b07f88f5",
+                "reference": "77d9c717df185a5ea3438e861a0c0524b07f88f5",
                 "shasum": ""
             },
             "type": "library",
@@ -74,7 +74,7 @@
                 }
             ],
             "description": "Default exceptions and ExceptionHandler for studyportals",
-            "time": "2017-11-02 11:13:20"
+            "time": "2017-11-27 10:29:50"
         }
     ],
     "packages-dev": [],
