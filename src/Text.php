@@ -35,7 +35,7 @@ abstract class Text{
 	 * @var string
 	 */
 
-	const DEFAULT_CHARSET = 'ISO-8859-1';
+	const DEFAULT_CHARSET = 'UTF-8';
 
 	/**
 	 * Articles of association used by the title-case conversion.
@@ -289,6 +289,8 @@ abstract class Text{
 	 */
 
 	public static function iconv($in_charset, $out_charset, $string){
+
+		trigger_error('This function is being deprecated. Contact Dmitrii or Ilia.', E_USER_WARNING);
 
 		if(($i = strpos($out_charset, '//')) !== false){
 

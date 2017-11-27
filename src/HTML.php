@@ -282,6 +282,7 @@ abstract class HTML{
 
 		libxml_clear_errors();
 
+		$html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
 		$Document = new \DOMDocument();
 		@$Document->loadHTML($html);
 
@@ -367,31 +368,9 @@ abstract class HTML{
 
 		if(!isset($Node->childNodes) || $Node->childNodes->length == 0){
 
-			/*
-			 * Transliterate to ISO-8859-1 and decode all HTML entities.
-			 *
-			 * Iconv will first attempt to transliterate, but will automatically
-			 * fallback to "ignore" mode if this fails. This prevents problems
-			 * with completely faulty encondings.
-			 */
+			// As no charset conversion is needed, nodeValue can be directly used
 
-			try{
-
-				$original_contents = $Node->nodeValue;
-				$node_contents = iconv('UTF-8', DEFAULT_CHARSET . '//TRANSLIT', $Node->nodeValue);
-
-				if(strlen($original_contents) * 0.95 > strlen($node_contents)){
-
-					throw new PHPErrorException('Original contents is significantly
-						larger than converted value');
-				}
-			}
-			catch(PHPErrorException $e){
-
-				$node_contents = iconv('UTF-8', DEFAULT_CHARSET . '//IGNORE', $Node->nodeValue);
-			}
-
-			$node_contents = html_entity_decode($node_contents, ENT_QUOTES, DEFAULT_CHARSET);
+			$node_contents = html_entity_decode($Node->nodeValue, ENT_QUOTES, DEFAULT_CHARSET);
 
 			// Reduce every possible combination of whitespaces to a single space-character
 
@@ -523,7 +502,6 @@ abstract class HTML{
 
 			$attribute_name = strtolower(trim($Attribute->name));
 			$attribute_value = trim($Attribute->value);
-			$attribute_value = iconv('UTF-8', DEFAULT_CHARSET . '//TRANSLIT', $attribute_value);
 
 			// Check if the attribute is allowed
 

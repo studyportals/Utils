@@ -566,8 +566,6 @@ abstract class HTTP{
 
 	public static function cleanPath($path){
 
-		$path = iconv('Windows-1252', 'ASCII//IGNORE', $path);
-
 		$path = str_replace(['\\', '/./'], '/', $path);
 		$path = preg_replace('/[\/]+/', '/', $path);
 		$path = rtrim($path, '/');
@@ -930,60 +928,6 @@ abstract class HTTP{
 			return '';
 		}
 
-		// Convert document back to ISO-8859-1
-
-		$iconv = function(&$value){
-
-			$value = static::iconv('Windows-1252', 'UTF-8', $value);
-		};
-
-		foreach($document as $name => $value){
-
-			if(is_array($value)){
-
-				array_walk_recursive($value, $iconv);
-			}
-			else{
-
-				$iconv($value);
-			}
-
-			$document[$name] = $value;
-		}
-
 		return json_encode($document);
-	}
-
-	/**
-	 * Enhanced iconv().
-	 *
-	 * <p>This method first attempts to use iconv() to transliterate the string.
-	 * It automatically switches to iconv() "ignore" if either transliteration
-	 * fails, or if the transliterated string is significantly shorter than the
-	 * original string.<br>
-	 * This method furthermore applies a hard-coded, ex-post, character mapping
-	 * to its output to prevent any further conversion "noise" from remaining in
-	 * the string.</p>
-	 *
-	 * <p>All in all this method can be used as a drop-in replacement for PHP's
-	 * internal iconv() function, with the different that his method (through
-	 * some trail-and-error) will most likely end up with a better result.</p>
-	 *
-	 * @param string $in_charset
-	 * @param string $out_charset
-	 * @param string $string
-	 * @return string
-	 */
-
-	public static function iconv($in_charset, $out_charset, $string){
-
-		if(($i = strpos($out_charset, '//')) !== false){
-
-			$out_charset = substr($out_charset, 0, $i);
-		}
-
-		$string_out = iconv($in_charset, "{$out_charset}//IGNORE", $string);
-
-		return $string_out;
 	}
 }
