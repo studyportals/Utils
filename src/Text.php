@@ -385,11 +385,13 @@ abstract class Text{
 
 	public static function rewriteToURLFriendly($name){
 
-		$name = strtolower(trim($name));
+		// Ensure that lower case string preserves UTF-8 encoding
+
+		$name = mb_strtolower(trim($name), "UTF-8");
 
 		// Approximate all non-ASCII characters with their ASCII counterpart
 
-		$name = @iconv('Windows-1252', 'ASCII//TRANSLIT', $name);
+		$name = @iconv('UTF-8', 'ASCII//TRANSLIT', $name);
 
 		/*
 		 * If text starts and ends with a brace, remove these first. Several
